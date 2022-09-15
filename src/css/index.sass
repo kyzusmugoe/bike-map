@@ -1,0 +1,41 @@
+
+$headerHeight: 80px
+$headBGpath: '../img/KV.png'
+$pagePadding: 20px
+
+@mixin flexBox($row, $col)
+    justify-self: $row
+    align-items: $col
+    display: flex
+
+
+body,html
+    margin: 0px
+    padding: 0px
+    height: 100%
+body
+    background-color: #aaa
+    .app
+        height: 100%
+        margin: 0 auto
+        @include flexBox(start, center)
+        flex-direction: column
+
+        header
+            width: 100%
+            background-image: url($headBGpath)
+            background-position: center center
+            background-size: 100%
+            background-repeat: no-repeat
+            height: $headerHeight
+            display: flex
+            @include flexBox(center, center)
+        .page
+            $_HP: $headerHeight + $pagePadding
+            padding: 20px
+            width: calc( 100% - $pagePadding*2)
+            height: calc( 100% - $_HP )
+            max-width: 1024px
+            background-color: #bfe7f1
+            
+                
