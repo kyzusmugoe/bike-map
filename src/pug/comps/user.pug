@@ -33,8 +33,9 @@ div#user.page
     div.row
         div.label 我想追蹤隊友騎乘的位置？
         div
-            input.full(placeholder="請輸入隊友參賽編號")
-            button +
+            div#runnerBox
+            input#runnerName.full(placeholder="請輸入隊友參賽編號")
+            button#addRunner +
     div.row
         button.pageBtn(data-id="suggest") 送出表單
          
