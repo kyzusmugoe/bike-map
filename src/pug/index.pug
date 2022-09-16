@@ -5,7 +5,6 @@ html
         div.app 
             header.nav
             include ./comps/user.pug
-            div#suggest.page(style="display: none;") suggest
-            div#riderMap.page(style="display: none;") riderMap
-            div#goal.page(style="display: none;") goal
-
+            include ./comps/suggest.pug
+            include ./comps/riderMap.pug
+            include ./comps/goal.pug

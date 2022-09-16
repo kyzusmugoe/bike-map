@@ -30,12 +30,28 @@ body
             height: $headerHeight
             display: flex
             @include flexBox(center, center)
+            max-width: 1000px
         .page
             $_HP: $headerHeight + $pagePadding
             padding: 20px
             width: calc( 100% - $pagePadding*2)
             height: calc( 100% - $_HP )
-            max-width: 1024px
+            max-width: calc(1000px - 40px)
             background-color: #bfe7f1
-            
+
+            .row
+                .label
+                    color:#235288
+                    font-size:1.2em
+                    font-weight: bolder
+                    margin-bottom: 4px 
+                input
+                    font-size:1.2em
+                    margin-bottom: 12px 
+                    border: none
+                    &.full
+                        width: 100%
+                select
+                    &.full
+                        width: 100%
                 

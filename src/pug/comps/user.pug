@@ -1,33 +1,40 @@
 div#user.page
     div.row
-        label 我的參賽編號
+        div.label 我的參賽編號
         div
-            input(value="wade")
+            input.full(placeholder="請輸入參賽編號")
     div.row
-        label 我的暱稱
+        div.label 我的暱稱
         div
-            input(value="wade")
+            input.full(placeholder="請輸入暱稱")
+
     div.row
-        label 報名路線
+        div.label 報名路線
         div
-            select#route(name="route")
+            select#route.full(name="route")
                 option(value="30") 30公里組
     div.row
-        label 是否有規律地騎車習慣？
+        div.label 是否有規律地騎車習慣？
         div
-            input(value="wade") 
+            input(type="radio")
+            span 有，我常騎車
+            input(type="radio")
+            span 沒有，我偶而騎車
     div.row
-        label 每周累計運動時間？
+        div.label 每周累計運動時間？
         div
-            input(value="wade") 
+            select#route.full(name="STimeOfDay")
+                option(value="30") 一周共運動90分鐘椅下
     div.row
-        label 這次想體驗甚麼騎乘感受？
+        div.label 這次想體驗甚麼騎乘感受？
         div
-            input(value="wade") 
+            select#route.full(name="SType")
+                option(value="30") 輕鬆騎，微喘就好
     div.row
-        label 我想追蹤隊友騎乘的位置？
+        div.label 我想追蹤隊友騎乘的位置？
         div
-            input(value="wade") 
+            input.full(placeholder="請輸入隊友參賽編號")
+            button +
     div.row
         button.pageBtn(data-id="suggest") 送出表單
          
