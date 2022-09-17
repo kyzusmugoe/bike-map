@@ -2,24 +2,33 @@ div#user.page
     div.row
         div.label 我的參賽編號
         div
-            input.full(placeholder="請輸入參賽編號")
+            input.full(type="text", placeholder="請輸入參賽編號")
     div.row
         div.label 我的暱稱
         div
-            input.full(placeholder="請輸入暱稱")
+            input.full(type="text", placeholder="請輸入暱稱")
+    div.row
+        div.label 我的暱稱
+        div
+            input.full(type="text", placeholder="請輸入暱稱")
 
     div.row
         div.label 報名路線
         div
             select#route.full(name="route")
                 option(value="30") 30公里組
+                option(value="60") 60公里組
+                option(value="90") 90公里組
+                option(value="120") 120公里組
     div.row
         div.label 是否有規律地騎車習慣？
-        div
-            input(type="radio")
-            span 有，我常騎車
-            input(type="radio")
-            span 沒有，我偶而騎車
+        div.oftenRadios
+            div
+                input(type="radio", name="often", value="Y")
+                span 有，我常騎車
+            div
+                input(type="radio",  name="often", value="N")
+                span 沒有，我偶而騎車
     div.row
         div.label 每周累計運動時間？
         div
@@ -34,8 +43,9 @@ div#user.page
         div.label 我想追蹤隊友騎乘的位置？
         div
             div#runnerBox
-            input#runnerName.full(placeholder="請輸入隊友參賽編號")
-            button#addRunner +
+            div#runnerBoxTool
+                input#runnerName.full(type="text", placeholder="請輸入隊友參賽編號")
+                button#addRunner +
     div.row
-        button.pageBtn(data-id="suggest") 送出表單
+        button#sendMyData.BPBtn.large.blue.pageBtn(data-id="suggest") 送出表單
          

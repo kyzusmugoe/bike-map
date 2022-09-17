@@ -2,11 +2,12 @@
 $headerHeight: 80px
 $headBGpath: '../img/KV.png'
 $pagePadding: 20px
+$mainColor:#235288
 
 @mixin flexBox($row, $col)
-    justify-self: $row
-    align-items: $col
     display: flex
+    justify-content: $row
+    align-items: $col
 
 
 body,html
@@ -14,23 +15,89 @@ body,html
     padding: 0px
     height: 100%
 body
-    background-color: #aaa
     .app
+      
         height: 100%
         margin: 0 auto
         @include flexBox(start, center)
         flex-direction: column
+        //元件
+        #runnerBoxTool
+            @include flexBox(start, center)
+            #addRunner
+                background: none
+                border: none
+                font-size: 2em
+                color:$mainColor
+
+        .complete
+            font-size: 4em
+            font-weight: bolder
+            color:#f30
+            margin: 16px auto
+            
+        .BPBtn    
+            width: 100%
+            border: none
+            margin-bottom: 8px
+            font-size: 1em
+            &.large
+                padding: 6px 
+                font-size: 1.6em
+                border-radius: 30px
+            &.blue
+                color: #fff
+                background-color: $mainColor
+            &.dGreen
+                color: #fff
+                background-color: #20522c
+            &.lGreen
+                color: #fff
+                background-color: #6da381
+            &.GO                
+                @include flexBox(center, center)
+                flex-direction: column
+                color: #f30
+                font-size: 2.8em
+                font-weight: bolder
+                //line-height: .6em
+                background-color: #ffa906
+                border-radius: 50%
+                width: 180px
+                height: 180px
+                border:4px solid #fff
+                span
+                    color: #fff
+                    font-size: 48px
+                &:active                    
+                    background-color: #ffdd9f
+                    
+
+
+
+        #runnerBox, #myRunnerList
+            @include flexBox(start, center)
+            flex-wrap: wrap
+
+        .memberLabel
+            background-color: #fff
+            border-radius: 16px
+            padding:4px 12px
+            margin: 4px
+            font-size: 1.2em
 
         header
             width: 100%
-            background-image: url($headBGpath)
-            background-position: center center
-            background-size: 100%
-            background-repeat: no-repeat
+            //background-image: url($headBGpath)
+            //background-position: center center
+            //background-size: 100%
+            //background-repeat: no-repeat
+            background-color:#effbff
             height: $headerHeight
-            display: flex
-            @include flexBox(center, center)
             max-width: 1000px
+            @include flexBox(center, center)
+            .logo
+                width: 90px
         .page
             $_HP: $headerHeight + $pagePadding
             padding: 20px
@@ -38,19 +105,75 @@ body
             height: calc( 100% - $_HP )
             max-width: calc(1000px - 40px)
             background-color: #bfe7f1
-
+            background-image: url('../img/bg.jpg')
+            background-position: center bottom
+            background-repeat: no-repeat
+            background-size: 200%
+            overflow-y: scroll
             .row
+                margin-bottom: 16px 
+                
+                &.center   
+                    @include flexBox(center, center)
+                
+                .oftenRadios
+                    font-size:1.2em
+                    @include flexBox(space-around, center)
+                    div
+                        @include flexBox(center, center)
+
+                        input[type="radio"] 
+                            -webkit-appearance: none
+                            appearance: none
+                            background-color: #fff
+                            margin: 0 8px
+                            font: inherit
+                            color: $mainColor
+                            width: 1.15em
+                            height: 1.15em
+                            border: 0.15em solid #fff
+                            border-radius: 50%
+                            transform: translateY(-0.075em)
+                            display: grid
+                            place-content: center
+
+
+                        input[type="radio"]::before 
+                            content: ""
+                            width: 0.65em
+                            height: 0.65em
+                            border-radius: 50%
+                            transform: scale(0)
+                            transition: 120ms transform ease-in-out
+                            box-shadow: inset 1em 1em var(--form-control-color)
+                            /* Windows High Contrast Mode */
+                            background-color: $mainColor
+
+                        input[type="radio"]:checked::before 
+                            transform: scale(1)
+
+                        input[type="radio"]:focus 
+                            outline: max(2px, 0.15em) solid $mainColor
+                            outline-offset: max(2px, 0.15em)
+                    
                 .label
-                    color:#235288
+                    color:$mainColor
                     font-size:1.2em
                     font-weight: bolder
                     margin-bottom: 4px 
-                input
+                    
+                input[type="text"], select
                     font-size:1.2em
-                    margin-bottom: 12px 
+
+                input[type="text"], select
+                    padding: 4px 8px
                     border: none
+                    border-radius: 4px
                     &.full
-                        width: 100%
+                        width: calc(100% - 16px)
+
+                select:checked
+                   color: gray
                 select
                     &.full
                         width: 100%

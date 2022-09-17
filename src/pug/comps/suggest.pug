@@ -1,16 +1,19 @@
 div#suggest.page
     div.row
-        label 建議您的騎乘指導方案
+        div.label 建議您的騎乘指導方案
         div
-            input(value="wade")
-            button 教練帶我輕鬆騎
+            button.BPBtn.large.lGreen.pageBtn(data-id="riderMap") 教練帶我輕鬆騎
+            
     div.row
-        label 您也可以更改其他方案喔
+        div.label 您也可以更改其他方案喔
         div
-            button 教練訓練我騎車
-            button 教練訓練我騎車
+            button.BPBtn.large.dGreen.pageBtn(data-id="riderMap") 教練帶我輕鬆騎
+            button.BPBtn.large.dGreen.pageBtn(data-id="riderMap") 教練帶我輕鬆騎
     div.row
-        label 我追蹤的隊友
-        div#myRunnerList
-    div.row
-        button.GObtn GO!
+        div.label 我追蹤的隊友
+        div#myRunnerList 無
+    div.row.center
+        button.BPBtn.GO.pageBtn(data-id="riderMap") GO!
+            br 
+            | 
+            span 出發

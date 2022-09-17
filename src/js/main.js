@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btns.forEach(btn => {
             btn.addEventListener("click", event => {
                 closeAll()
-                document.querySelector(`#${event.target.dataset.id}`).style.display = "block"
+                document.querySelector(`#${event.currentTarget.dataset.id}`).style.display = "block"
             })
         })
     }
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const runnerAddHandler = ()=>{
         let runnerList = [];
         const boxUser = document.querySelector("#runnerBox")//user頁面
-        const boxSuggest = document.querySelector("#myRunnerList")//user頁面
+        const boxSuggest = document.querySelector("#myRunnerList")//suggest頁面
         const runnerName = document.querySelector("#runnerName")
         
         renderRunner = box =>{
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }    
             runnerList.map(name=>{
                 let member = document.createElement("div")
+                member.classList.add("memberLabel")
                 member.innerHTML= name
                 box.appendChild(member)
             })
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //init
     closeAll()
     document.querySelector(`#user`).style.display = "block"
+    //document.querySelector(`#goal`).style.display = "block"
     setBtnsHandler()
     runnerAddHandler()
 })
