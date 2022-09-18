@@ -156,12 +156,14 @@ module.exports = (env, options) => {
                 filename: 'css/[name].css',
                 chunkFilename: "[id].css",
             }),
-            
+
 
             new CopyPlugin({
                 patterns: [
                     { from: "./src/img", to: "img" },
-                    { from: "./src/js/main.js", to: "js" }
+                    { from: "./src/js/main.js", to: "js" },
+                    { from: "./src/js/maps.json", to: "js" },
+                    { from: "./src/mp3", to: "mp3" }
                 ],
             }),
             

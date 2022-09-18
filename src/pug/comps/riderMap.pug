@@ -1,18 +1,52 @@
 div#riderMap.page
-    div.timePanel
-        div.rName 張家豪選手 
-        div.timer
-            label 騎乘時間
-            div#RideTime 0:45  
-        div.timer
-            label 騎乘距離  
-            div#RideDistance 0:45  
- 
-        div.mainMap
-        div.bump 陡坡
-        div.attractions 景點
-        div.parteners 隊友資訊
+    div.container
+        div.infoPanel
+            div.rName 
+                div Hi!
+                    span#riderNumber  88888
+                    | 號
+                div
+                    span#riderName 張家家豪
+                    |  選手 
+            div.rTime
+                label 騎乘時間
+                div#RideTime 0:45  
+            div.rDistance
+                label 騎乘距離  
+                div#RideDistance 9999.99  
+    
+        div.mainMap 
+            div#mapRenderer.mMap 
+                div#AttractionsBox              
+            div#sideMap.sMap 
+            div.testTool 測試工具
+                button#prevStep ←
+                span 第
+                span#currentStep
+                span 步
+                button#nextStep →
 
+                
+        div#bumpPanel.bump(style="background-image:url('./img/bump.png')")
         
-        button.BPBtn.large.dGreen.pageBtn(data-id="goal") 結束
+        div#attrPanel.attractions(style="display:none")  
+            div.photoBox
+                img
+            div.introBox
+                span 
+            div.nameBox
+        div.parteners 
+            div.title 隊友資訊
+            div.partenerList
+                - var n = 0;
+                ul
+                while n < 8
+                    - n++
+                    div.partenerBox
+                        div.psn 66666
+                        div.pName 王李大明
+                        div.pDistance 超前約
+                            span 9999
+                            | m
+
 

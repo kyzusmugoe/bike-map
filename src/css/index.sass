@@ -15,8 +15,7 @@ body,html
     padding: 0px
     height: 100%
 body
-    .app
-      
+    .app      
         height: 100%
         margin: 0 auto
         @include flexBox(start, center)
@@ -101,6 +100,8 @@ body
         .page
             $_HP: $headerHeight + $pagePadding
             padding: 20px
+           
+
             width: calc( 100% - $pagePadding*2)
             height: calc( 100% - $_HP )
             max-width: calc(1000px - 40px)
@@ -110,6 +111,9 @@ body
             background-repeat: no-repeat
             background-size: 200%
             overflow-y: scroll
+
+          
+
             .row
                 margin-bottom: 16px 
                 
@@ -177,4 +181,119 @@ body
                 select
                     &.full
                         width: 100%
+
+            //riderMap
+        #riderMap
+            padding: 0
+            width: 100%
+            height: calc(100% - $headerHeight)    
+            .container
+                height: 100%
+                @include flexBox(flex-start, flex-start)
+                flex-direction: column
+                
+                .infoPanel
+                    flex:0 0 auto
+                    @include flexBox(space-around, center)
+                    color:#fff
+                    background-color: $mainColor
+                    width: calc(100% - 32px)
+                    padding:4px 16px
+                    .rName
+                        @include flexBox(flex-end, flex-start)
+                        flex-direction: column
+                        font-size: 1.2em
+                    .rTime, .rDistance
+                        text-align: center
+                        font-size:1.2em
+                      
+                        #RideTime, #RideDistance
+                            width: 100px
+                            font-size:30px
+                            padding:4px 8px
+                            margin: 4px 0
+                            border-radius: 8px
+                            color:#333
+                            background-color: #fff
+                        
+                    
+                .mainMap
+                    width: 100%
+                    flex:1 0 auto
+                    background-color: #ffc
+                    position: relative
+                    .mMap
+                        width: 100%
+                        height: 100% 
+                        background-repeat: no-repeat
+                        background-position: center center 
+                        .point 
+                            position: absolute
+
+                    .sMap                        
+                        width: 40%
+                        height: 80px
+                        background-size: 101%
+                        background-repeat: no-repeat
+                        background-position: center center     
+                        position: absolute
+                        top: 4px
+                        right: 4px
+                        box-shadow: 3px 3px 3px  rgba(0, 0, 0, .3)
+                        border: 1px solid #fff
+                    .testTool
+                        background-color: #fff
+                        position: absolute
+                        bottom: 4px
+                        left: 4px
+
+                .attractions, .bump
+                    width: 100%
+                    @include flexBox(center, flex-start)
+                    flex-wrap: wrap
+                    background-color: #FFF
+                    padding:16px
+                    height: 150px
+                .bump
+                    background-repeat: no-repeat
+                    background-position: left bottom
+                    
+                .attractions
+                    //flex:0 0 calc(20% - 32px)
+                    //flex:0 0 150px
+                    .photoBox
+                        flex:0 0 40%
+                        img
+                            width: 100%
+                    .introBox
+                        padding: 0 8px
+                        flex:0 0 calc(60% - 16px)
+                    .nameBox
+                        color:$mainColor
+                        font-weight: 600
+                        font-size: 24px
+                        flex:0 0 100%
+
+                .parteners
+                    flex: 0 0 calc(20% - 32px)
+                    width: calc(100% - 32px)
+                    padding: 16px
+                    background-color: #333
+                    .title
+                        color:#fff
+                        font-size: 1.2em
+                        font-weight: bolder
+                    .partenerList
+
+                        height: 100%
+                        max-height: 100px
+                        overflow-y: scroll
+                        .partenerBox
+                            color:$mainColor
+                            background-color: #fff
+                            padding:4px
+                            margin-bottom: 4px
+                            border-radius: 32px
+                            font-weight: bolder                            
+                            @include flexBox(space-around, flex-start)
                 
