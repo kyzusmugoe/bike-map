@@ -4,6 +4,8 @@ $headBGpath: '../img/KV.png'
 $pagePadding: 20px
 $mainColor:#235288
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap')
+
 @mixin flexBox($row, $col)
     display: flex
     justify-content: $row
@@ -14,6 +16,8 @@ body,html
     margin: 0px
     padding: 0px
     height: 100%
+    font-family: Noto Serif TC, serif
+    font-family: "Noto Serif TC", serif
 body
     .app      
         height: 100%
@@ -93,7 +97,8 @@ body
             //background-repeat: no-repeat
             background-color:#effbff
             height: $headerHeight
-            max-width: 1000px
+            //max-width: 1000px
+            max-width: 9 60px
             @include flexBox(center, center)
             .logo
                 width: 90px
@@ -110,9 +115,8 @@ body
             background-position: center bottom
             background-repeat: no-repeat
             background-size: 200%
-            overflow-y: scroll
-
-          
+            //overflow-y: scroll
+            overflow-y: auto
 
             .row
                 margin-bottom: 16px 
@@ -166,10 +170,10 @@ body
                     font-weight: bolder
                     margin-bottom: 4px 
                     
-                input[type="text"], select
+                input, select
                     font-size:1.2em
 
-                input[type="text"], select
+                input, select
                     padding: 4px 8px
                     border: none
                     border-radius: 4px
@@ -208,6 +212,7 @@ body
                         font-size:1.2em
                       
                         #RideTime, #RideDistance
+                            font-weight: 700
                             width: 100px
                             font-size:30px
                             padding:4px 8px
@@ -218,20 +223,33 @@ body
                         
                     
                 .mainMap
+                    $boxHeight:420px
                     width: 100%
-                    flex:1 0 auto
+                    flex:1 1 auto
+                    max-height: $boxHeight
+                    //flex:0 0 400px
                     background-color: #ffc
-                    position: relative
+                    position: relative                    
+                    @include flexBox(center, center)
+                    overflow: hidden
                     .mMap
-                        width: 100%
-                        height: 100% 
+                        //width: 100%
+                        //height: 100% 
+                        width: 960px
+                        height: $boxHeight
                         background-repeat: no-repeat
                         background-position: center center 
-                        .point 
-                            position: absolute
+                        position: relative
+                        #AttractionsBox
+                            width: 960px
+                            height: $boxHeight
+                            .point 
+                                width: 30px
+                                height: 60px
+                                position: absolute
 
                     .sMap                        
-                        width: 40%
+                        width: 160px
                         height: 80px
                         background-size: 101%
                         background-repeat: no-repeat
@@ -248,17 +266,67 @@ body
                         left: 4px
 
                 .attractions, .bump
-                    width: 100%
+                    
                     @include flexBox(center, flex-start)
-                    flex-wrap: wrap
+                    
                     background-color: #FFF
-                    padding:16px
-                    height: 150px
+                    
+
                 .bump
                     background-repeat: no-repeat
                     background-position: left bottom
+                    background-color: #fafdfb
+                    position: relative
+                    width: 100%
+                    flex:0 0 180px
+                    //height: 180px
+                    .message
+                        position: absolute
+                        background-color: #fff
+                        width: 150px
+                        height: 60px
+                        padding: 8px
+                        border: 3px solid #fa0
+                        border-radius: 8px
+                        top: 20px
+                        left: 110px
+                        &::before, &::after
+                            content: ' '
+                            position: absolute
+                            width: 0
+                            height: 0
+                            right: auto
+                            bottom: auto
+                        &::before
+                            top: 18px
+                            left: -24px
+                            border: 12px solid #fa0
+                            border-color: transparent #fa0 #fa0 transparent 
+                        &::after             
+                            top: 21px
+                            left: -15px            
+                            border: 9px solid #fff
+                            border-color: transparent #fff #fff transparent 
+                        
+                    //線段-先不要畫
+                    /*     
+                        &::after
+                            content: " "
+                            position: absolute
+                            left: 50px
+                            width: 2px
+                            height: 115px
+                            background-color: #f00
+                    
+                        
                     
                 .attractions
+                    padding:16px
+                    width: calc(100% - 32px)
+                    max-height: 180px
+                    //height: calc(180px - 32px)
+                    flex:0 1 calc(180px - 32px)
+                    flex-wrap: wrap
                     //flex:0 0 calc(20% - 32px)
                     //flex:0 0 150px
                     .photoBox
@@ -268,6 +336,10 @@ body
                     .introBox
                         padding: 0 8px
                         flex:0 0 calc(60% - 16px)
+                        display: -webkit-box
+                        -webkit-box-orient: vertical
+                        -webkit-line-clamp:5
+                        overflow: hidden
                     .nameBox
                         color:$mainColor
                         font-weight: 600
@@ -275,7 +347,8 @@ body
                         flex:0 0 100%
 
                 .parteners
-                    flex: 0 0 calc(20% - 32px)
+                    //flex: 0 0 calc(20% - 32px)
+                    flex: 1 1 auto
                     width: calc(100% - 32px)
                     padding: 16px
                     background-color: #333

@@ -60,9 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.path}/main/${step}.png)`
         document.querySelector("#sideMap").style.backgroundImage= `url(./${mapData.path}/side/${step}.png)`
         document.querySelector("#currentStep").innerHTML=step
-        
-
-       
     }
 
     //設置景點
@@ -90,19 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         attrPanel.style.display="none";
                     }, 8000);
                 })
-                point.innerHTML = "O"
+                point.innerHTML = '<img class="tree" src="./img/tree.svg"/>'
                 aBox.appendChild(point)
             }
         })
     }
 
     const setSound = step =>{
+        const mesg = document.querySelector("#bumpPanel .message")//文字註解
+        mesg.style.display = "none"
         mapData.sounds.map(sound=>{
             if(step == sound.step){
                 var audio = new Audio(`./mp3/${sound.mp3}`);
                 audio.play();
+                //設定註解內容
+                mesg.innerHTML = sound.txt
+                mesg.style.display = "block"
             }
         })
+    }
+
+    const setBump = step =>{
+        const bump = document.querySelector("#bumpPanel");
+        bump.style.backgroundImage = `url(./img/maps/1/bump/${step}.png)`
     }
 
     const setTestMapTool = () =>{
@@ -111,19 +118,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector("#prevStep").addEventListener("click",event=>{
             if(step>1){
                 step--
-                console.log(step)
                 setMapStep(step)
                 setAttractions(step)
                 setSound(step)
+                setBump(step)
             }
         })
         document.querySelector("#nextStep").addEventListener("click",event=>{
             if(step<max){
                 step++
-                console.log(step)
                 setMapStep(step)                
                 setAttractions(step)
                 setSound(step)
+                setBump(step)
             }
         })
     }
@@ -148,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             mapData = res.map1
             setMapStep(1)
+            setBump(1)
             setTestMapTool()
             /*document.querySelector("#silderMap").addEventListener("input",event=>{
                 let sn = event.currentTarget.value
@@ -155,6 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             })*/
             
             //mapData.map1
+
+            document.querySelector("#goSurveycake").addEventListener("click",()=>{
+                window.open("https://www.surveycake.com/","_self")
+            })
         }).catch(error => {
             console.error('jsonip 取得失敗:', error)
             //reject()
@@ -165,8 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //init
     closeAll()
-    //document.querySelector(`#user`).style.display = "block"
-    document.querySelector(`#riderMap`).style.display = "block"
+    document.querySelector(`#user`).style.display = "block"
+    //document.querySelector(`#riderMap`).style.display = "block"
     setBtnsHandler()
     runnerAddHandler()
     loadMaps()
