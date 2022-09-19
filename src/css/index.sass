@@ -4,6 +4,9 @@ $headBGpath: '../img/KV.png'
 $pagePadding: 20px
 $mainColor:#235288
 
+$AppMaxWidth:414px
+$AppMaxHeight:896px
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap')
 
 @mixin flexBox($row, $col)
@@ -21,6 +24,9 @@ body,html
 body
     .app      
         height: 100%
+        //max-height: 1180px
+        max-height: $AppMaxHeight
+
         margin: 0 auto
         @include flexBox(start, center)
         flex-direction: column
@@ -74,7 +80,13 @@ body
                     font-size: 48px
                 &:active                    
                     background-color: #ffdd9f
-                    
+
+        .rideType.on
+            box-shadow: 0 0 2px 4px #fff
+            background-color: #6da381
+            z-index: 10
+            //border: 6px solid #fc0 
+                        
 
 
 
@@ -98,7 +110,7 @@ body
             background-color:#effbff
             height: $headerHeight
             //max-width: 1000px
-            max-width: 9 60px
+            max-width: $AppMaxWidth
             @include flexBox(center, center)
             .logo
                 width: 90px
@@ -107,9 +119,12 @@ body
             padding: 20px
            
 
-            width: calc( 100% - $pagePadding*2)
+            width: calc( $AppMaxWidth - $pagePadding*2)
+            max-width: $AppMaxWidth
+            
             height: calc( 100% - $_HP )
-            max-width: calc(1000px - 40px)
+            //@media screen and ( max-width:414px  )
+                
             background-color: #bfe7f1
             background-image: url('../img/bg.jpg')
             background-position: center bottom
@@ -168,7 +183,7 @@ body
                     color:$mainColor
                     font-size:1.2em
                     font-weight: bolder
-                    margin-bottom: 4px 
+                    margin-bottom: 8px 
                     
                 input, select
                     font-size:1.2em
@@ -347,8 +362,7 @@ body
                         flex:0 0 100%
 
                 .parteners
-                    //flex: 0 0 calc(20% - 32px)
-                    flex: 1 1 auto
+                    flex: 0 0 calc(20% - 32px)
                     width: calc(100% - 32px)
                     padding: 16px
                     background-color: #333
@@ -359,8 +373,9 @@ body
                     .partenerList
 
                         height: 100%
-                        max-height: 100px
-                        overflow-y: scroll
+                        max-height: 100px                           
+                            
+                        overflow-y: auto
                         .partenerBox
                             color:$mainColor
                             background-color: #fff

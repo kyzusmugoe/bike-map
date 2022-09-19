@@ -174,12 +174,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
    
+    const setRideTypeBtn = ()=>{
+        const btns = document.querySelectorAll(".rideType")
+        const _closeAll=()=>{
+            btns.forEach(btn=>{
+                btn.classList.remove("on")
+            })    
+        }
+        btns.forEach(btn=>{
+            btn.addEventListener("click", event=>{
+                _closeAll()
+                event.currentTarget.classList.add("on")
+            })
+        })
+    }
 
     //init
     closeAll()
     document.querySelector(`#user`).style.display = "block"
     //document.querySelector(`#riderMap`).style.display = "block"
     setBtnsHandler()
+    setRideTypeBtn()
     runnerAddHandler()
     loadMaps()
 })
