@@ -1,19 +1,21 @@
-const { render } = require("pug");
-
+//const { render } = require("pug");
 
 let runnerList = [];//追蹤的跑者清單
 let mapData = {};//地圖資料
 
 document.addEventListener('DOMContentLoaded', () => {
+    //#region 頁面控制 套院pageBtn按鈕配合取得datasets中的ID資料即可切換頁面
     const pages = document.querySelectorAll(".page")
     const btns = document.querySelectorAll(".pageBtn")
 
+    //關閉所有頁面
     const closeAll = () => {
-        //alert("closeAll")
         pages.forEach(page => {
             page.style.display = "none"
         })
     }
+    
+    //將所有的pageBtn設定click後的行為
     const setBtnsHandler = () => {
         btns.forEach(btn => {
             btn.addEventListener("click", event => {
@@ -22,13 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
-    
+    //#endregion
+
+    //#region 追蹤跑者控制 將使用者輸入的跑者號碼帶入到指定的div中
     const runnerAddHandler = ()=>{
         let runnerList = [];
         const boxUser = document.querySelector("#runnerBox")//user頁面
         const boxSuggest = document.querySelector("#myRunnerList")//suggest頁面
         const runnerName = document.querySelector("#runnerName")
         
+        //將runnerList蒐集到的資料render跑者的標籤
         renderRunner = box =>{
             while(box.firstChild){
                 box.removeChild(box.lastChild)
@@ -40,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 box.appendChild(member)
             })
         }
-
+        
+        //點選+號寫入runnerList中，這邊未來需要與後端驗證跑者的資料
         document.querySelector("#addRunner").addEventListener("click",()=>{
-           
             if(runnerName.value != ''){
                 runnerList.push(runnerName.value)
                 renderRunner(boxUser)
@@ -54,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(runnerList)
         })        
     }
+    //#endregion 追蹤跑者控制
 
+    //#region 地圖控制
     const setMapStep = step =>{
         //document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.path}/main/${mapData.list[step].pic})`
         document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.path}/main/${step}.png)`
@@ -107,11 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    //顛坡圖設定
     const setBump = step =>{
         const bump = document.querySelector("#bumpPanel");
         bump.style.backgroundImage = `url(./img/maps/1/bump/${step}.png)`
     }
 
+    //測試工具 正式上線後移除
     const setTestMapTool = () =>{
         let step=1
         const max = mapData.list
@@ -134,7 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-
+    
+    //讀取json設定檔，
     const loadMaps=()=>{
         fetch("./js/maps.json", {
             method: 'GET'
@@ -144,36 +154,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }).then(res => {
             if(res){
-                //mapData = res
                 return res
             }else{
                 alert("取得地圖資料失敗")
             }                     
         }).then(res=>{
-            //console.log(res.map1.list[0].pic)
-            //document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.map1.path}/${mapData.map1.list[0].pic})`
-            
             mapData = res.map1
             setMapStep(1)
             setBump(1)
             setTestMapTool()
-            /*document.querySelector("#silderMap").addEventListener("input",event=>{
-                let sn = event.currentTarget.value
-                document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.map1.path}/${mapData.map1.list[sn].pic})`
-            })*/
-            
-            //mapData.map1
 
             document.querySelector("#goSurveycake").addEventListener("click",()=>{
                 window.open("https://www.surveycake.com/","_self")
             })
         }).catch(error => {
             console.error('jsonip 取得失敗:', error)
-            //reject()
         });
     }
+
+    //由於本機開啟頁面沒辦法讀取json 因此使用測試的func來模擬讀取
+    const loadMapsTest=()=>{
+        mapData = {
+            "path":"img/maps/1",
+            "list":10,
+            "attractions":[        
+                {"name":"上品擂茶","intro":"店內光是這種紅色磁磚地板、紅磚牆面、復古沐桂、蓑衣、斗笠、農具，就有種回到鄉下的感覺。", "pic":"1.jpg" ,"step":3, "x":40, "y":30},
+                {"name":"西瓜莊","intro":"「西瓜莊園」聽到名字第一個讓人聯想到的是，這裡種西瓜？還是西瓜吃到飽呢？呵～其實這裡不種西瓜，更沒有西瓜田，西瓜莊園是一間以西瓜為主題的親子餐廳。", "pic":"2.jpg" ,"step":3, "x":50, "y":80},
+                {"name":"牛奶芽","intro":"我們原本是一間位於北埔冷泉上方的有機芽菜農場，有一天小孩子貪玩把牛奶倒入芽菜桶裡，心想：完蛋了！應該整桶都壞掉了吧！？沒想到栽培出來的芽菜更加清甜", "pic":"3.jpg" ,"step":8, "x":50, "y":20}
+            ],
+            "sounds":[        
+                {"step":"6","mp3":"downhill.mp3", "txt":"前面是下坡 請小心騎乘"},
+                {"step":"8","mp3":"uphill.mp3", "txt":"前面是上坡，請加油"},
+                {"step":"10","mp3":"beforeGoal.mp3" ,"txt":"快要到終點了，再努力一下"}
+            ]
+        }
+        setMapStep(1)
+        setBump(1)
+        setTestMapTool()
+
+        document.querySelector("#goSurveycake").addEventListener("click",()=>{
+            window.open("https://www.surveycake.com/","_self")
+        })
+    }
+    //#endregion
     
-   
+    //#region 跑者模式選擇頁面
     const setRideTypeBtn = ()=>{
         const btns = document.querySelectorAll(".rideType")
         const _closeAll=()=>{
@@ -188,13 +213,15 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
+    //#endregion
+
 
     //init
     closeAll()
     document.querySelector(`#user`).style.display = "block"
-    //document.querySelector(`#riderMap`).style.display = "block"
     setBtnsHandler()
     setRideTypeBtn()
     runnerAddHandler()
-    loadMaps()
+    //loadMaps()
+    loadMapsTest()//測試用
 })
