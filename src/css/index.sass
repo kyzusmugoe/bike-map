@@ -114,6 +114,10 @@ body
             @include flexBox(center, center)
             .logo
                 width: 90px
+        &.full
+            header
+                display: none
+
         .page
             $_HP: $headerHeight + $pagePadding
             padding: 20px
@@ -205,11 +209,14 @@ body
         #riderMap
             padding: 0
             width: 100%
-            height: calc(100% - $headerHeight)    
+            //height: calc(100% - $headerHeight)    
+            height: 100%
             .container
                 height: 100%
                 @include flexBox(flex-start, flex-start)
                 flex-direction: column
+                position: relative
+                overflow: hidden
                 
                 .infoPanel
                     flex:0 0 auto
@@ -235,13 +242,13 @@ body
                             border-radius: 8px
                             color:#333
                             background-color: #fff
-                        
                     
                 .mainMap
-                    $boxHeight:420px
+                    //$boxHeight:420px
+                    $boxHeight:720px 
                     width: 100%
                     flex:1 1 auto
-                    max-height: $boxHeight
+                    //max-height: $boxHeight
                     //flex:0 0 400px
                     background-color: #ffc
                     position: relative                    
@@ -254,9 +261,10 @@ body
                         height: $boxHeight
                         background-repeat: no-repeat
                         background-position: center center 
+                        background-size: cover
                         position: relative
                         #AttractionsBox
-                            width: 960px
+                            //width: 960px
                             height: $boxHeight
                             .point 
                                 width: 30px
@@ -264,8 +272,8 @@ body
                                 position: absolute
 
                     .sMap                        
-                        width: 160px
-                        height: 80px
+                        width: 120px
+                        height: 60px
                         background-size: 101%
                         background-repeat: no-repeat
                         background-position: center center     
@@ -281,11 +289,8 @@ body
                         left: 4px
 
                 .attractions, .bump
-                    
                     @include flexBox(center, flex-start)
-                    
                     background-color: #FFF
-                    
 
                 .bump
                     background-repeat: no-repeat
@@ -293,17 +298,17 @@ body
                     background-color: #fafdfb
                     position: relative
                     width: 100%
-                    flex:0 0 180px
+                    flex:0 0 100px
                     //height: 180px
                     .message
                         position: absolute
                         background-color: #fff
                         width: 150px
-                        height: 60px
+                        height: 42px
                         padding: 8px
                         border: 3px solid #fa0
                         border-radius: 8px
-                        top: 20px
+                        top: 10px
                         left: 110px
                         &::before, &::after
                             content: ' '
@@ -336,6 +341,30 @@ body
                         
                     
                 .attractions
+                    @keyframes attrFadeIn
+                        0%
+                            bottom: -180px
+                        100%
+                            bottom: 100px
+                    @keyframes attrFadeOut
+                        0%
+                            bottom: 100px
+                        100%
+                            bottom: -180px
+                            display: none
+                    display: none
+                    transition: .4s
+                    animation-duration: .4s
+                    animation-fill-mode: forwards 
+                    position: absolute
+                    &.on
+                        display: flex
+                        animation-name: attrFadeIn
+                    &.off
+                        display: flex
+                        animation-name: attrFadeOut
+                   
+                            
                     padding:16px
                     width: calc(100% - 32px)
                     max-height: 180px
@@ -362,9 +391,11 @@ body
                         flex:0 0 100%
 
                 .parteners
-                    flex: 0 0 calc(20% - 32px)
+                    //flex: 0 0 calc(15% - 16px)
+                    z-index: 100
+                    flex: 0 0 calc(100px - 16px)
                     width: calc(100% - 32px)
-                    padding: 16px
+                    padding: 8px 16px
                     background-color: #333
                     .title
                         color:#fff
@@ -373,7 +404,7 @@ body
                     .partenerList
 
                         height: 100%
-                        max-height: 100px                           
+                        max-height: 60px                           
                             
                         overflow-y: auto
                         .partenerBox

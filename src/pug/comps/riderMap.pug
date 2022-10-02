@@ -31,7 +31,7 @@ div#riderMap.page
             div.message(style="display:none") 測試文字
 
         
-        div#attrPanel.attractions(style="display:none")  
+        div#attrPanel.attractions 
             div.photoBox
                 img
             div.introBox
@@ -41,7 +41,7 @@ div#riderMap.page
             div.title 隊友資訊
             div.partenerList
                 - var n = 0;
-                ul
+                
                 while n < 8
                     - n++
                     div.partenerBox

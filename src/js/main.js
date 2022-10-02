@@ -1,4 +1,6 @@
 //const { render } = require("pug");
+const attrShowTime =8000;//景點面板出現時間
+const renderTime =2000;//景點面板出現時間
 
 let runnerList = []; //追蹤的跑者清單
 let mapData = {}; //地圖資料
@@ -34,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector(".GO.pageBtn").addEventListener("click", () => {
 
-        
+        document.querySelector(".app").classList.add("full")
+
         //聲音檔必須全部透過點擊後才會正常載入
         //safari不給使用動態建立audio，因此只能逐項建立音檔audio物件
         let downhillMp3 = new Audio("./mp3/downhill.mp3")
@@ -71,11 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     setMesgCard(true, sound.txt)
                 }
             })
-            setBump(step)
+            //setBump(step)
         }
         document.querySelector("#currentStep").innerHTML = step
-        render()
-        setInterval(render, 2000)
+        
+        setInterval(render, renderTime)
     })
 
     //關閉所有頁面
@@ -134,30 +137,76 @@ document.addEventListener('DOMContentLoaded', () => {
     //#region 地圖控制
     const setMapStep = step => {
         //document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.path}/main/${mapData.list[step].pic})`
+        /*
         const imgMain = new Image()
         imgMain.src = `./${mapData.path}/main/${step}.png`
+
         const imgSide = new Image()
         imgMain.src = `./${mapData.path}/side/${step}.png`
+        
         const imgBump = new Image()
         imgMain.src = `./${mapData.path}/bump/${step}.png`
 
-
-
         document.querySelector("#mapRenderer").style.backgroundImage = `url(./${mapData.path}/main/${step}.png)`
         document.querySelector("#sideMap").style.backgroundImage = `url(./${mapData.path}/side/${step}.png)`
+        */
         //document.querySelector("#currentStep").innerHTML=step
-        /*
+        
         const loadImgMain = ()=>{
+            const imgMain = new Image()
+            imgMain.src = `./${mapData.path}/main/${step}.png`
             return new Promise((resolve, reject)=>{
                 imgMain.addEventListener("load",()=>{  
                     document.querySelector("#mapRenderer").style.backgroundImage= `url(./${mapData.path}/main/${step}.png)`
-                    document.querySelector("#sideMap").style.backgroundImage= `url(./${mapData.path}/side/${step}.png)`
-                    document.querySelector("#currentStep").innerHTML=step
-                    resolve()    
+                    resolve(true)    
                 })
             })
         } 
-        */
+
+        const loadImgSide = ()=>{
+            const imgSide = new Image()
+            imgSide.src = `./${mapData.path}/side/${step}.png`
+            return new Promise((resolve, reject)=>{
+                imgSide.addEventListener("load",()=>{
+                    document.querySelector("#sideMap").style.backgroundImage= `url(./${mapData.path}/side/${step}.png)`
+                    //document.querySelector("#currentStep").innerHTML=step
+                    resolve(true)    
+                })
+            })
+        } 
+        
+        const loadImgBump = ()=>{
+            const imgBump = new Image()
+            imgBump.src = `./${mapData.path}/bump/${step}.png`
+            return new Promise((resolve, reject)=>{
+                imgBump.addEventListener("load",()=>{
+                    document.querySelector("#bumpPanel").style.backgroundImage= `url(./${mapData.path}/bump/${step}.png)`
+                    resolve(true)    
+                })
+            })
+        } 
+
+        loadImgMain().then(res=>{
+            if(res){
+                console.log('loadImgMain complete')
+                return loadImgSide()
+            }else{
+                console.log('loadImgMain fail')
+            }
+        }).then(res=>{
+            if(res){
+                console.log('loadImgSide complete')
+                return loadImgBump()
+            }else{
+                console.log('loadImgSide fail')
+            }
+        }).then(res=>{
+            if(res){
+                console.log('loadImgBump complete')
+            }else{
+                console.log('loadImgBump fail')
+            }
+        })
         /*
         imgSide.addEventListener("load",()=>{  
             //console.log("loaded imgSide")
@@ -186,24 +235,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 point.style.left = `${attr.x}%`
                 point.style.top = `${attr.y}%`
                 point.addEventListener("click", () => {
-                    bumpPanel.style.display = "none";
-                    attrPanel.style.display = "flex";
+                    //bumpPanel.style.display = "none";
+                    attrPanel.classList.remove('off')
+                    attrPanel.classList.add('on')
+
                     attrPanel.querySelector(".photoBox img").src = `./img/attractions/${attr.pic}`
                     attrPanel.querySelector(".nameBox").innerHTML = attr.name
                     attrPanel.querySelector(".introBox").innerHTML = attr.intro
                     setTimeout(() => {
-                        bumpPanel.style.display = "flex";
-                        attrPanel.style.display = "none";
-                    }, 8000);
+                        //bumpPanel.style.display = "flex";
+                        attrPanel.classList.add('off')
+                        attrPanel.classList.remove('on')
+                        //attrPanel.style.display = "none";
+                    }, attrShowTime);
                 })
                 point.innerHTML = '<img class="tree" src="./img/tree.svg"/>'
                 aBox.appendChild(point)
             }
         })
     }
-
+    /*
     const getAllSounds = ()=>{
-
         let lib = [];
         mapData.sounds.map(data=>{
             let audio = new Audio(`./mp3/${data.mp3}`);            
@@ -216,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         return lib
     }
+    */
 
     const setSound = step => {
         const mesg = document.querySelector("#bumpPanel .message") //文字註解
