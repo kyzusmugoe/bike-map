@@ -9,27 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //#region 頁面控制 套院pageBtn按鈕配合取得datasets中的ID資料即可切換頁面
     const pages = document.querySelectorAll(".page")
     const btns = document.querySelectorAll(".pageBtn")
-
-
-    /*
-    let aa = new Audio(`./mp3/downhill.mp3`);
-    let bb = new Audio(`./mp3/uphill.mp3`);
-
-    const playAA = ()=>{
-        aa.play()
-    }
-    aa.addEventListener("canplaythrough", () => {
-        aa.play().catch(e => {
-           window.addEventListener('click', () => {
-                setInterval(()=>{
-                    playAA()
-                },1000)
-
-           })
-        })
-    });
-    */
-
+    
     let SSW = true //控制聲音避免重複播放 
     let step = 1
     let currentStep = 0
@@ -427,6 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setBtnsHandler()
     setRideTypeBtn()
     runnerAddHandler()
-    //loadMaps()
-    loadMapsTest() //測試用
+    loadMaps()
+    //loadMapsTest() //測試用
 })
