@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_層_1" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.16 72.91">
+  <g>
+    <circle cx="29.58" cy="29.58" r="27.58"/>
+    <polygon points="17.76 41.96 29.58 72.91 41.96 41.96 17.76 41.96"/>
+  </g>
+  <g>
+    <circle cx="27.58" cy="27.58" r="27.58" style="fill: #fff;"/>
+    <polygon points="15.76 39.96 27.58 70.91 39.96 39.96 15.76 39.96" style="fill: #fff;"/>
+  </g>
+  <rect x="26.57" y="16.75" width="2.62" height="26.86" style="fill: #6b665a;"/>
+  <polygon points="35.17 28.38 31.84 21.46 33.86 21.46 27.88 10.22 21.91 21.46 23.93 21.46 20.6 28.38 22.46 28.38 20.6 36.13 35.17 36.13 33.31 28.38 35.17 28.38" style="fill: #a6c157;"/>
+</svg>

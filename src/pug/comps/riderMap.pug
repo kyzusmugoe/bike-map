@@ -17,14 +17,20 @@ div#riderMap.page
     
         div.mainMap 
             div#mapRenderer.mMap 
-                div#AttractionsBox              
-            div#sideMap.sMap 
+                div#AttractionsBox
+                img#biker(src="./img/biker.svg")        
+            div#sideMap.sMap
+                div.marker
             div.testTool 測試工具
                 button#prevStep ←
                 span 第
                 span#currentStep
                 span 步
                 button#nextStep →
+                
+                button#zoomIn +
+                button#zoomOut -
+
 
                 
         div#bumpPanel.bump
