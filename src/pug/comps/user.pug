@@ -3,23 +3,12 @@ div#user.page
         div.label 我的參賽編號
         div
             input.full( placeholder="請輸入參賽編號")
-    div.row
-        div.label 我的暱稱
-        div
-            input.full( placeholder="請輸入暱稱")
+
     div.row
         div.label 我的暱稱
         div
             input.full( placeholder="請輸入暱稱")
 
-    div.row
-        div.label 報名路線
-        div
-            select#route.full(name="route")
-                option(value="map30") 30公里組
-                option(value="map60") 60公里組
-                option(value="map90") 90公里組
-                option(value="map120") 120公里組
     div.row
         div.label 是否有規律地騎車習慣？
         div.oftenRadios
@@ -33,12 +22,16 @@ div#user.page
         div.label 每周累計運動時間？
         div
             select#route.full(name="STimeOfDay")
-                option(value="30") 一周共運動90分鐘椅下
+                option(value="perweek90") 每週累計不足90分鐘
+                option(value="perweek90_150") 每週累計90-150分鐘
+                option(value="perweek90_150") 每週累計超過150分鐘
     div.row
-        div.label 這次想體驗甚麼騎乘感受？
+        div.label 這次騎乘活動設定的目標
         div
             select#route.full(name="SType")
                 option(value="30") 輕鬆騎，微喘就好
+                option(value="30") 配速騎乘，追求完賽
+                option(value="30") 全力騎乘，突破成績
     div.row
         div.label 我想追蹤隊友騎乘的位置？
         div

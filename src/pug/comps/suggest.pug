@@ -1,21 +1,27 @@
 div#suggest.page
-    div.row
-        div.label 建議您的騎乘指導方案
-        div
-            button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎
-            
-    div.row
-        div.label 您也可以更改其他方案喔
-        div
-            button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎1
-            button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎2
+    //-
+        div.row
+            div.label 建議您的騎乘指導方案
+            div
+                button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎
+                
+        div.row
+            div.label 您也可以更改其他方案喔
+            div
+                button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎1
+                button.BPBtn.large.dGreen.rideType 教練帶我輕鬆騎2
     div.row
         div.label 我追蹤的隊友
         div#myRunnerList 無
-    div.row.center
+
+    div.row.center.goBox
         button.BPBtn.GO.pageBtn(data-id="riderMap") GO!
             br 
             | 
             span 出發
+        div
+            span.label 出發時，請按下此按鈕
+        div
+            span (此服務僅限10/29使用)
     div.row
         button.BPBtn.large.pageBtn(data-id="goal") 結束頁面測試

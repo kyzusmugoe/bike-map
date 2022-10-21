@@ -163,7 +163,8 @@ module.exports = (env, options) => {
                     { from: "./src/img", to: "img" },
                     { from: "./src/js/main.js", to: "js" },
                     { from: "./src/js/maps.json", to: "js" },
-                    { from: "./src/mp3", to: "mp3" }
+                    { from: "./src/mp3", to: "mp3" },
+                    { from: "./src/favicon.ico" }
                 ],
             }),
             
