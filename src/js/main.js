@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btns = document.querySelectorAll(".pageBtn")
 
     let SSW = true //控制聲音避免重複播放 
-    let step = 1
+    let step = 40
     let currentStep = 0
 
     //關閉所有頁面
